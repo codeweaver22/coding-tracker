@@ -1,0 +1,25 @@
+/*
+Program to determine whether a number is power of two
+Brian Kernighan's Algorithm
+*/
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+        
+        System.out.println("Enter number");
+		int N = input.nextInt();
+		System.out.println("Result is: " + isPowerOfTwo(N));
+	}
+	
+	public static boolean isPowerOfTwo(int N)
+	{
+	  if(N==0)
+	  return false;
+	  if((N & (N-1)) == 0)
+	  return true;
+	  else
+	  return false;
+	}
+}
