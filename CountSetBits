@@ -1,0 +1,34 @@
+/*
+Program to calculate total number of set bits in a number 
+*/
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+        
+        System.out.println("Enter number");
+		int N = input.nextInt();
+		System.out.println("Count of set bits: " + calcSetBits(N));
+	}
+	
+	//Calculate number of set bits
+	public static int calcSetBits(int N)
+	{
+	    int count = 0;
+	    int bits = calcLog(N);
+		while(bits>=0)
+		{
+		    if((N & (1<<(bits)))!=0)
+		    count++;
+		    bits--;
+		}
+		return count;
+	}
+	
+	//Calculate log base 2 of a number
+	public static int calcLog(int N)
+	{
+	    return (int)Math.floor(Math.log10(N)/Math.log10(2));
+	}
+}
