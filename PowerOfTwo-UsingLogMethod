@@ -1,0 +1,31 @@
+/*
+Program to determine whether a number is power of two
+*/
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+        
+        System.out.println("Enter number");
+		int N = input.nextInt();
+		System.out.println("Result is: " + isPowerOfTwo(N));
+	}
+	
+	public static boolean isPowerOfTwo(int N)
+	{
+	   if(N==0)
+	   return false;
+	   double log2N = calcLog(N);
+	   if(log2N == Math.floor(log2N))
+	   return true;
+	   else
+	   return false;
+	}
+	
+	//Calculate log base 2 of a number
+	public static double calcLog(int N)
+	{
+	    return (Math.log10(N)/Math.log10(2));
+	}
+}
