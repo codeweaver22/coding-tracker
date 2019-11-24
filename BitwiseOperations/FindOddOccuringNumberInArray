@@ -1,0 +1,32 @@
+/*
+Find the odd occuring number in an array
+Using XOR operator:
+x^x=0
+x^0=x
+*/
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner input = new Scanner(System.in);
+		System.out.println("Enter array length");
+		int N = input.nextInt();
+		System.out.println("Enter numbers");
+		int[] A = new int[N];
+		for(int i=0;i<N;i++)
+		{
+		    A[i] = input.nextInt();
+		}
+		System.out.println("Odd occurring number is: " + findOddOccuringNumber(A));
+	}
+	
+	public static int findOddOccuringNumber(int[] A)
+	{
+	    int res = 0;
+	    for(int i=0;i<A.length;i++)
+	    {
+	        res = res^A[i];
+	    }
+	    return res;
+	}
+}
