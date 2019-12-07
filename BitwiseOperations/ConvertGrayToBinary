@@ -1,0 +1,18 @@
+/*
+Program to covert gray to binary code
+*/
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Enter number");
+
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt();
+
+        int binary = 0;
+        for (n = n; n > 0; n = n >> 1) {
+            binary = binary ^ n;
+        }
+        System.out.println(binary);
+    }
+}
