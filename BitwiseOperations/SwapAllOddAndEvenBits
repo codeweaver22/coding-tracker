@@ -1,0 +1,22 @@
+/*
+Program to swap all odd and even bits of a number
+*/
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Enter number");
+
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt();
+        //A 32 bit number with all even bits set as 1
+        int even = 0xAAAAAAAA;
+        //A 32 bit number with all odd bits set as 1
+        int odd = 0X55555555;
+        even = (even & n);
+        odd = (odd & n);
+        even = (even >> 1);
+        odd = (odd << 1);
+        System.out.println((even | odd));
+
+    }
+}
