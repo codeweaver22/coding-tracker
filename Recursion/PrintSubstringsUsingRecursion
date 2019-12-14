@@ -1,0 +1,19 @@
+// Print substrings of a String using Recursion
+public class Main
+{
+  public static void main (String[]args)
+  {
+    String s = "abc";
+      pringSubstrings (s, "", 0);
+  }
+  public static void pringSubstrings (String s, String currStr, int index)
+  {
+    if (index == s.length ())
+      {
+	System.out.print (currStr + ",");
+	return;
+      }
+    pringSubstrings (s, currStr, index + 1);
+    pringSubstrings (s, currStr + s.charAt (index), index + 1);
+  }
+}
