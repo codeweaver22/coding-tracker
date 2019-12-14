@@ -1,0 +1,26 @@
+// Rope cutting problem using Recursion
+import java.lang.*;
+public class Main
+{
+  public static void main (String[]args)
+  {
+    System.out.println ("Hello World");
+    int max = findMaxPiecesRopeProblem (23, 11, 9, 12);
+      System.out.println (max);
+  }
+  public static int findMaxPiecesRopeProblem (int n, int a, int b, int c)
+  {
+    if (n < 0)
+      return -1;
+    if (n == 0)
+      return 0;
+    int n1 = findMaxPiecesRopeProblem (n - a, a, b, c);
+    int n2 = findMaxPiecesRopeProblem (n - b, a, b, c);
+    int n3 = findMaxPiecesRopeProblem (n - c, a, b, c);
+    int res = Math.max (Math.max (n1, n2), n3);
+    if (res < 0)
+      return -1;
+    else
+      return res + 1;
+  }
+}
