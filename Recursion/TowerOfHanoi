@@ -1,0 +1,22 @@
+// Tower of Hanoi problem
+public class Main
+{
+  public static void main (String[]args)
+  {
+    movBlocks ('A', 'C', 'B', 3);
+  }
+  public static void movBlocks (char from, char to, char aux,
+				int numberOfDiscs)
+  {
+    if (numberOfDiscs == 1)
+      {
+	System.out.println ("Moving disc: " + numberOfDiscs + " " + from +
+			    "->" + to);
+	return;
+      }
+    movBlocks (from, aux, to, numberOfDiscs - 1);
+    System.out.println ("Moving disc: " + numberOfDiscs + " " + from + "->" +
+			to);
+    movBlocks (aux, to, from, numberOfDiscs - 1);
+  }
+}
