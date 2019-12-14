@@ -1,0 +1,14 @@
+// Jospehus problem
+public class Main
+{
+  public static void main (String[]args)
+  {
+    System.out.println ("Output is: " + josMethod (8, 2));
+  }
+  public static int josMethod (int n, int k)
+  {
+    if (n == 0)
+      return 0;
+    return (josMethod (n - 1, k) + k) % n;
+  }
+}
