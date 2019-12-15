@@ -1,0 +1,48 @@
+// To print Possible Words From Phone Digits
+
+import java.io.*;
+import java.util.*;
+public class Main {
+ public static void main(String[] args) {
+  Scanner sc = new Scanner(System.in);
+  int t = sc.nextInt();
+  while (t--> 0) {
+   int n = sc.nextInt(); // input size of array
+   int arr[] = new int[n]; //input the elements of array that are keys to be pressed
+
+   for (int i = 0; i < n; i++)
+    arr[i] = sc.nextInt();
+   possibleWords(arr, n);
+   System.out.println();
+  }
+ }
+
+ static void possibleWords(int a[], int N) {
+  HashMap < Integer, String > keyStr = new HashMap < > ();
+  keyStr.put(2, "abc");
+  keyStr.put(3, "def");
+  keyStr.put(4, "ghi");
+  keyStr.put(5, "jkl");
+  keyStr.put(6, "mno");
+  keyStr.put(7, "pqrs");
+  keyStr.put(8, "tuv");
+  keyStr.put(9, "wxyz");
+  String[] str = new String[N];
+  for (int i = 0; i < N; i++) {
+   str[i] = keyStr.get(a[i]);
+  }
+  printWords(0, "", N, str);
+ }
+
+ static void printWords(int index, String curr, int N, String[] str) {
+  if (index == N) {
+   System.out.print(curr + " ");
+   return;
+  }
+  printWords(index + 1, curr + str[index].charAt(0), N, str);
+  printWords(index + 1, curr + str[index].charAt(1), N, str);
+  printWords(index + 1, curr + str[index].charAt(2), N, str);
+  if (str[index].length() == 4)
+   printWords(index + 1, curr + str[index].charAt(3), N, str);
+ }
+}
