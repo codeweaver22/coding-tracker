@@ -1,0 +1,30 @@
+//Stock buy and sell solution
+public class Main
+{
+  public static void main (String[]args)
+  {
+    int[] arr = new int[]{ 1, 5, 3, 1, 2, 8 };
+    int n = arr.length;
+    int buy = arr[0], sell = -1, profit = 0, i = 1;
+    while (i < n)
+      {
+	if (buy == -1 && (i + 1 < n && arr[i] < arr[i + 1]))
+	  {
+	    buy = arr[i];
+	    i++;
+	  }
+	if (buy != -1 && (arr[i] > buy)
+	    && ((i + 1 < n && arr[i] > arr[i + 1]) || (i == n - 1)))
+	  {
+	    sell = arr[i];
+	  }
+	if (buy != -1 && sell != -1)
+	  {
+	    profit += (sell - buy);
+	    buy = sell = -1;
+	  }
+	i++;
+      }
+    System.out.print ("Total profit is: " + profit);
+  }
+}
