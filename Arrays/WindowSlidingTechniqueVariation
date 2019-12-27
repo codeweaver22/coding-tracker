@@ -1,0 +1,29 @@
+// Window Sliding Technique variation
+public class Main
+{
+  public static void main (String[]args)
+  {
+    int arr[] = new int[]{ 1, 4, 20, 3, 10, 5 };
+    int givenSum = 5;
+      System.out.print ("Sum exists: " + isSumExists (arr, givenSum));
+  }
+
+  static boolean isSumExists (int arr[], int givenSum)
+  {
+    int start = 0, n = arr.length;
+    int currSum = arr[start];
+    for (int end = 1; end <= n; end++)
+      {
+	while (currSum > givenSum && start < (end - 1))
+	  {
+	    currSum -= arr[start];
+	    start++;
+	  }
+	if (currSum == givenSum)
+	  return true;
+	if (end < n)
+	  currSum += arr[end];
+      }
+    return false;
+  }
+}
