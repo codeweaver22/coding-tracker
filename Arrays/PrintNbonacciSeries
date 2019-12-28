@@ -1,0 +1,27 @@
+// Print N-bonacci numbers using Window Sliding Technique
+public class Main
+{
+  public static void main (String[]args)
+  {
+    int n = 4, m = 10;
+    int start = 0, sum = 1;
+    int[] arr = new int[m];
+    for (int i = 0; i < n - 1; i++)
+      {
+	arr[i] = 0;
+      }
+    arr[n - 1] = 1;
+    for (int i = n; i < m; i++)
+      {
+	arr[i] = sum;
+	sum += arr[i];
+	sum -= arr[start];
+	start++;
+      }
+    System.out.print ("N-bonacci list: ");
+  for (int i:arr)
+      {
+	System.out.print (i + ",");
+      }
+  }
+}
