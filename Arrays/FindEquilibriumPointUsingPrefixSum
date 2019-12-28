@@ -1,0 +1,28 @@
+// Prefix sum to find the equilibrium point
+public class Main
+{
+  public static void main (String[]args)
+  {
+    int[] arr = new int[]{ 3, 4, 8, -9, 20, 6 };
+
+      System.out.print ("Is equilibrium points exists: " +
+			isEuilibriumExists (arr));
+  }
+
+  static boolean isEuilibriumExists (int[]arr)
+  {
+    int n = arr.length, sum = 0, lSum = 0;
+    for (int i = 0; i < n; i++)
+      {
+	sum += arr[i];
+      }
+    for (int i = 0; i < n; i++)
+      {
+	if (lSum == sum - arr[i])
+	  return true;
+	lSum += arr[i];
+	sum -= arr[i];
+      }
+    return false;
+  }
+}
