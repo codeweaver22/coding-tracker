@@ -1,4 +1,4 @@
-// Window Sliding Technique variation
+// Window Sliding Technique variation to check if the sum exists in the subarray
 public class Main
 {
   public static void main (String[]args)
