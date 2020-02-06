@@ -1,0 +1,41 @@
+/******************************************************************************
+
+                     Count of occurrences of x in sorted element 
+
+*******************************************************************************/
+
+public class Main
+{
+  public static void main (String[]args)
+  {
+    int[] arr = { 2, 3, 3, 3, 3, 5, 5, 6, 7, 7, 7 };
+    int num = 5;
+    int l = 0, h = arr.length - 1, count = 0;
+    count = countOccurence (arr, l, h, num, count);
+    System.out.print (count);
+  }
+
+  public static int countOccurence (int[]arr, int l, int h, int num,
+				    int count)
+  {
+    if (l > h)
+      {
+	return count;
+      }
+    int mid = (int) (l + h) / 2;
+    if (arr[mid] == num)
+      {
+	count++;
+      }
+    if (num <= arr[mid])
+      {
+	count = countOccurence (arr, l, mid - 1, num, count);
+      }
+    if (num >= arr[mid])
+      {
+	count = countOccurence (arr, mid + 1, h, num, count);
+      }
+    return count;
+  }
+
+}
