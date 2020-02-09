@@ -1,0 +1,33 @@
+/******************************************************************************
+
+        Two Pointer Approach to find the pair of sum 
+            in an array
+
+*******************************************************************************/
+
+public class Main
+{
+  public static void main (String[]args)
+  {
+    int[] arr = { 2, 4, 8, 9, 11, 12, 20, 30 };
+    int i = 0, j = arr.length - 1, num = 25;
+    while (i < j)
+      {
+	if (arr[i] + arr[j] == num)
+	  {
+	    System.out.print ("Yes");
+	    return;
+	  }
+	if (arr[j] > num)
+	  {
+	    j--;
+	    continue;
+	  }
+	if (arr[i] + arr[j] < num)
+	  i++;
+	else
+	  j--;
+      }
+    System.out.print ("No");
+  }
+}
