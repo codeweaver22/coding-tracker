@@ -1,0 +1,45 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+// Moore's voting algorithm
+
+class GFG {
+ public static void main(String[] args) {
+  //code
+  Scanner scan = new Scanner(System.in);
+  int T = scan.nextInt();
+  while (T > 0) {
+   int size = scan.nextInt();
+   int[] arr = new int[size];
+   for (int i = 0; i < size; i++) {
+    arr[i] = scan.nextInt();
+   }
+   System.out.println(findMajority(arr, size));
+   T--;
+  }
+ }
+
+ public static int findMajority(int[] arr, int n) {
+  int res = 0, count = 1;
+  for (int i = 1; i < n; i++) {
+   if (arr[res] == arr[i])
+    count++;
+   else
+    count--;
+   if (count == 0) {
+    res = i;
+    count = 1;
+   }
+  }
+  count = 0;
+  for (int i = 0; i < n; i++) {
+   if (arr[res] == arr[i])
+    count++;
+  }
+  if (count > n / 2)
+   return arr[res];
+  else
+   return -1;
+ }
+}
