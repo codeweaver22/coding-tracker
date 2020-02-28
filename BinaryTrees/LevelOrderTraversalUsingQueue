@@ -1,0 +1,49 @@
+/******************************************************************************
+Level order traversal of a tree
+*******************************************************************************/
+import java.util.*;
+public class Main
+{
+  public static void main (String[]args)
+  {
+    //System.out.println("Hello World");
+    Tree root = new Tree (10);
+      root.left = new Tree (15);
+      root.right = new Tree (20);
+      root.left.left = new Tree (30);
+      root.right.left = new Tree (40);
+      root.right.right = new Tree (50);
+      root.right.left.left = new Tree (60);
+      root.right.left.right = new Tree (70);
+      levelOrderTraversal (root);
+  }
+
+  public static void levelOrderTraversal (Tree root)
+  {
+    if (root == null)
+      return;
+    Queue < Tree > qu = new LinkedList < Tree > ();
+    qu.add (root);
+    while (qu.isEmpty () == false)
+      {
+	Tree curr = qu.poll ();
+	System.out.print (curr.data + "->");
+	if (curr.left != null)
+	  qu.add (curr.left);
+	if (curr.right != null)
+	  qu.add (curr.right);
+      }
+  }
+}
+
+
+class Tree
+{
+  int data;
+  Tree left;
+  Tree right;
+    Tree (int d)
+  {
+    this.data = d;
+  }
+}
