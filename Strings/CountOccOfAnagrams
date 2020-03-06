@@ -1,0 +1,47 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class GFG {
+ public static void main(String[] args) {
+  //code
+  Scanner scan = new Scanner(System.in);
+  int T = scan.nextInt();
+  while (T > 0) {
+   String str = scan.next();
+   String txt = scan.next();
+   int[] cStr = new int[256];
+   int[] tStr = new int[256];
+   int count = 0, txtLen = txt.length();
+   
+   // To count the characters in the pattern
+   tStr = countChar(txt, tStr);
+   
+   cStr = countChar(str.substring(0, txtLen), cStr);
+   if (areSame(cStr, tStr))
+    count++;
+   for (int i = 1; i < str.length() - txtLen + 1; i++) {
+    cStr[str.charAt(i - 1)]--;
+    cStr[str.charAt(i + txtLen - 1)]++;
+    if (areSame(cStr, tStr))
+     count++;
+   }
+   System.out.println(count);
+   T--;
+  }
+ }
+
+ public static boolean areSame(int[] cStr, int[] tStr) {
+  for (int i = 0; i < 256; i++) {
+   if (cStr[i] != tStr[i])
+    return false;
+  }
+  return true;
+ }
+
+ public static int[] countChar(String s, int[] c) {
+  for (int i = 0; i < s.length(); i++) {
+   c[s.charAt(i)]++;
+  }
+  return c;
+ }
+}
