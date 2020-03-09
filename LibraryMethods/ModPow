@@ -1,0 +1,17 @@
+
+static long modPowLong(long a,long b)
+    {
+        if(b==0)
+        return 1L;
+        long y = 1L;
+        while(b>0)
+        {
+            if(b%2==1)
+            {
+                y = mul(y,a);
+            }
+            a = mul(a,a);
+            b = b>>1;
+        }
+        return y%MOD;
+    }
