@@ -1,0 +1,14 @@
+public class Main
+{
+  // To return Math.ceil function from a division
+  public static void main (String[]args)
+  {
+    int a = 10;
+    int b = 5, val = 0;
+    if ((a % b) != 0)
+        val = (a / b) + 1;
+    else
+        val = (a / b);
+      System.out.println ("The ceiling " + "value is " + val);
+  }
+}
