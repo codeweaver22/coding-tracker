@@ -1,0 +1,27 @@
+// Find the least number of perfect sqaures that sum to input number
+public class Main {
+ public static void main(String[] args) {
+  int input = 30;
+  System.out.printf("Count is: %d", findCount(input, input));
+ }
+
+ static int findCount(int input, int curr) {
+  if ((input == 0) || curr == 0)
+   return 0;
+  int res1 = Integer.MAX_VALUE;
+  if (isPerfectSqr(input) && input <= curr) {
+   res1 = 1 + findCount(input, curr - input);
+  }
+  int res2 = findCount(input - 1, curr);
+  if (res2 == 0)
+   return res1;
+  else
+   return Math.min(res1, res2);
+ }
+
+ static boolean isPerfectSqr(int number) {
+  double res = Math.sqrt(number);
+  double flr = Math.floor(res);
+  return ((res - flr) == 0);
+ }
+}
