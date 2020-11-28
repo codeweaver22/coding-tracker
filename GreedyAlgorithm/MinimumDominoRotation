@@ -1,0 +1,32 @@
+class Solution {
+    public int minDominoRotations(int[] A, int[] B) {
+        int min = Integer.MAX_VALUE;
+        
+        min = Math.min(countSwaps(A[0], A, B), min);
+        min = Math.min(countSwaps(A[0], B, A), min);
+        min = Math.min(countSwaps(B[0], A, B), min);
+        min = Math.min(countSwaps(B[0], B, A), min);
+
+        return (min == Integer.MAX_VALUE) ? -1 : min;
+    }
+
+    /**
+     * @param target the number which will present in the entire array made equal
+     * @param first  the array with elements of same number
+     * @param second the array with which will check for swap
+     * @return the count of swaps. It will return MAX_VALUE
+     * if swap is not possible to make both the array equal
+     */
+    private int countSwaps(int target, int[] first, int[] second) {
+        int swaps = 0;
+        for (int i = 0; i < first.length; i++) {
+            if (target == first[i])
+                continue;
+            else if (target == second[i])
+                swaps++;
+            else
+                return Integer.MAX_VALUE;
+        }
+        return swaps;
+    }
+}
