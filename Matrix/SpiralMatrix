@@ -1,0 +1,53 @@
+public class SpiralMatrix {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> result = new ArrayList<>();
+        if (matrix == null) return result;
+
+        int top = 0, bottom = matrix.length - 1, right = matrix[0].length - 1, left = 0;
+        int i = 0, j = 0;
+
+        // keep iterating till within the valid boundaries
+        while (top <= bottom || left <= right) {
+
+            // Right Wall
+            for (j = left; j <= right; j++) {
+                result.add(matrix[top][j]);
+            }
+
+            top++;
+            // Valid boundary check
+            if (top > bottom) break;
+
+
+            // Bottom Wall
+            for (i = top; i <= bottom; i++) {
+                result.add(matrix[i][right]);
+            }
+
+            right--;
+            // Valid boundary check
+            if (left > right) break;
+
+            // Left Wall
+            for (j = right; j >= left; j--) {
+                result.add(matrix[bottom][j]);
+            }
+
+            bottom--;
+            // Valid boundary check
+            if (top > bottom) break;
+
+            // Top Wall
+            for (i = bottom; i >= top; i--) {
+                result.add(matrix[i][left]);
+            }
+
+            left++;
+
+            // Valid boundary check
+            if (left > right) break;
+        }
+
+        return result;
+    }
+}
