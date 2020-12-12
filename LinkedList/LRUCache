@@ -1,0 +1,112 @@
+package com.learning.lrucache;
+
+import java.util.HashMap;
+
+/**
+ * Implementation of least recently used cache with Doubly Linked List and HashMap
+ * Runtime complexity of get(key) -> O(1)
+ * Runtime complexity of put(key) -> O(1)
+ */
+public class LRUCache {
+
+    /**
+     * Double ended pointed Node
+     */
+    class DNode {
+        int key;
+        int value;
+        DNode prev;
+        DNode next;
+
+        public DNode(int key, int value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    HashMap<Integer, DNode> map;
+    DNode head, tail;
+    int capacity, count;
+
+    public LRUCache(int c) {
+        // Capacity of cache
+        capacity = c;
+        count = 0;
+        map = new HashMap<>();
+
+        // Initialize the doubly linked list with 0 value head and tail nodes
+        head = new DNode(0, 0);
+        tail = new DNode(0, 0);
+
+        // Pointed head and tail nodes to each other to begin with
+        head.next = tail;
+        tail.prev = head;
+    }
+
+    /**
+     * To add the node to the start of linked list, this is the node which is recently used
+     *
+     * @param node
+     * @param key
+     */
+    private void addToHead(DNode node, int key) {
+        node.prev = head;
+        node.next = head.next;
+        head.next = node;
+        node.next.prev = node;
+        if (key != 0) {
+            map.put(key, node);
+            count++;
+        }
+    }
+
+    /**
+     * Remove the least recently used node from the list and map
+     */
+    private void removeLRU() {
+        map.remove(tail.prev.key);
+        tail.prev = tail.prev.prev;
+        tail.prev.next = tail;
+    }
+
+    /**
+     * To update the map with new value of key and move the node to start
+     *
+     * @param node
+     * @param value
+     */
+    private void updateNode(DNode node, int value) {
+        if (value != 0) node.value = value;
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+        addToHead(node, 0);
+    }
+
+    /**
+     * To insert key into cache
+     *
+     * @param key
+     * @param value
+     */
+    public void put(int key, int value) {
+        if (!map.containsKey(key)) {
+            addToHead(new DNode(key, value), key);
+            if (count > capacity) removeLRU();
+        } else {
+            updateNode(map.get(key), value);
+        }
+    }
+
+    /**
+     * To retrieve a value from given key, if value doesn't exist return -1
+     *
+     * @param key
+     * @return
+     */
+    public int get(int key) {
+        if (!map.containsKey(key)) return -1;
+        DNode node = map.get(key);
+        updateNode(node, 0);
+        return node.value;
+    }
+}
